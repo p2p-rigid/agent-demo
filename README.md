@@ -33,6 +33,7 @@ Final Response
 ## Configuration
 
 1. Copy `.env.example` to `.env`:
+
    ```bash
    cp .env.example .env
    ```
@@ -41,6 +42,7 @@ Final Response
    ```
    DEEPSEEK_API_KEY=sk-...
    ```
+3. Alternatively, set API key in a env var DEEPSEEK_API_KEY
 
    The project uses LiteLLM under the hood. The model string `deepseek/deepseek-chat` is routed to the DeepSeek provider. The `DEEPSEEK_API_KEY` environment variable is automatically picked up by LiteLLM for authentication.
 
@@ -57,8 +59,13 @@ python -m consent_adk_demo.main
 ```
 
 This runs five sample prompts through the sequential agent flow:
+
 - 2 valid prompts (create and revoke consent)
 - 3 invalid prompts (bad mac_id, bad consent_type, missing channel)
+
+## Run UI
+
+adk web 2>&1 | tee log.txt
 
 ## Run Unit Tests
 
@@ -93,10 +100,12 @@ These logs can include user prompts, system instructions, tool schemas, tool cal
 ## Example Prompts
 
 **Valid:**
+
 - `Create a consent with mac id 1234567, consent type MR, channel BB`
 - `Revoke consent with mac id 7654321, consent type RR, channel PB`
 
 **Invalid:**
+
 - `Create a consent with mac id 123, consent type MR, channel BB` (mac_id too short)
 - `Create a consent with mac id 1234567, consent type XX, channel BB` (invalid consent_type)
 - `Create a consent with mac id 1234567 and consent type MR` (missing channel)
