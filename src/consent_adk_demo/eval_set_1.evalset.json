@@ -1,0 +1,105 @@
+{
+  "eval_set_id": "eval_set_1",
+  "name": "eval_set_1",
+  "eval_cases": [
+    {
+      "eval_id": "Create_a_consent_with_mac_id_1234567_consent_t",
+      "conversation": [
+        {
+          "invocation_id": "e-b8abba53-483b-4297-9cb3-17177fe4c53c",
+          "user_content": {
+            "parts": [
+              {
+                "text": "Create a consent with mac id 1234567, consent type MR, channel BB"
+              }
+            ],
+            "role": "user"
+          },
+          "final_response": {
+            "parts": [
+              {
+                "text": "The consent was created successfully. Let me report the result to the user.",
+                "thought": true
+              },
+              {
+                "text": "The consent has been created successfully! Here's a summary:\n\n| Field | Value |\n|-------|-------|\n| **MAC ID** | 1234567 |\n| **Consent Type** | MR |\n| **Channel** | BB |\n| **Status** | ✅ Created |\n\nThe operation completed without any issues. Is there anything else you need?"
+              }
+            ],
+            "role": "model"
+          },
+          "intermediate_data": {
+            "invocation_events": [
+              {
+                "author": "user_intent_validator",
+                "content": {
+                  "parts": [
+                    {
+                      "text": "We are asked to validate a consent management request. The user's message is: \"Create a consent with mac id 1234567, consent type MR, channel BB\". We need to extract intent, mac_id, consent_type, channel. Intent is \"create\" -> create_consent. mac_id is \"1234567\" (7 digits, numeric). consent_type is \"MR\". channel is \"BB\". All fields provided, values match allowed values. So valid. Output JSON with status valid and all fields.",
+                      "thought": true
+                    },
+                    {
+                      "text": "{\"status\":\"valid\",\"intent\":\"create_consent\",\"mac_id\":\"1234567\",\"consent_type\":\"MR\",\"channel\":\"BB\"}"
+                    }
+                  ],
+                  "role": "model"
+                }
+              },
+              {
+                "author": "consent_action_agent",
+                "content": {
+                  "parts": [
+                    {
+                      "text": "The user wants to create a consent. The validation has confirmed the intent is \"create_consent\" with mac_id \"1234567\", consent_type \"MR\", and channel \"BB\". I'll now call the create_consent function with these exact values.",
+                      "thought": true
+                    },
+                    {
+                      "function_call": {
+                        "id": "call_00_JfN8EZ0fLtNwmyXrhA9U0724",
+                        "args": {
+                          "mac_id": "1234567",
+                          "consent_type": "MR",
+                          "channel": "BB"
+                        },
+                        "name": "create_consent"
+                      }
+                    }
+                  ],
+                  "role": "model"
+                }
+              },
+              {
+                "author": "consent_action_agent",
+                "content": {
+                  "parts": [
+                    {
+                      "function_response": {
+                        "id": "call_00_JfN8EZ0fLtNwmyXrhA9U0724",
+                        "name": "create_consent",
+                        "response": {
+                          "success": true,
+                          "operation": "create_consent",
+                          "mac_id": "1234567",
+                          "consent_type": "MR",
+                          "channel": "BB",
+                          "message": "Consent created successfully"
+                        }
+                      }
+                    }
+                  ],
+                  "role": "user"
+                }
+              }
+            ]
+          },
+          "creation_timestamp": 1779001909.9222257
+        }
+      ],
+      "session_input": {
+        "app_name": "consent_adk_demo",
+        "user_id": "user"
+      },
+      "creation_timestamp": 1779002173.1622732
+    }
+  ],
+  "creation_timestamp": 1779002164.6343122
+}
