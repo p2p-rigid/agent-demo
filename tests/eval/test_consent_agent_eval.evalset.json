@@ -1,0 +1,203 @@
+{
+  "eval_set_id": "test_consent_agent_eval",
+  "name": "Consent Agent Eval",
+  "description": "Eval cases converted from the generated pytest eval runner.",
+  "eval_cases": [
+    {
+      "eval_id": "valid_create_consent",
+      "conversation": [
+        {
+          "invocation_id": "valid_create_consent_1",
+          "user_content": {
+            "parts": [
+              {
+                "text": "Create a consent with mac id 1234567, consent type MR, channel BB"
+              }
+            ],
+            "role": "user"
+          },
+          "final_response": {
+            "parts": [
+              {
+                "text": "Consent created successfully for mac id 1234567, consent type MR, channel BB."
+              }
+            ],
+            "role": "model"
+          },
+          "intermediate_data": {
+            "invocation_events": [
+              {
+                "author": "consent_action_agent",
+                "content": {
+                  "parts": [
+                    {
+                      "function_call": {
+                        "id": "valid_create_consent_call_1",
+                        "args": {
+                          "mac_id": "1234567",
+                          "consent_type": "MR",
+                          "channel": "BB"
+                        },
+                        "name": "create_consent"
+                      }
+                    }
+                  ],
+                  "role": "model"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "session_input": {
+        "app_name": "consent_adk_demo",
+        "user_id": "eval_user"
+      }
+    },
+    {
+      "eval_id": "valid_revoke_consent",
+      "conversation": [
+        {
+          "invocation_id": "valid_revoke_consent_1",
+          "user_content": {
+            "parts": [
+              {
+                "text": "Revoke consent with mac id 7654321, consent type RR, channel PB"
+              }
+            ],
+            "role": "user"
+          },
+          "final_response": {
+            "parts": [
+              {
+                "text": "Consent revoked successfully for mac id 7654321, consent type RR, channel PB."
+              }
+            ],
+            "role": "model"
+          },
+          "intermediate_data": {
+            "invocation_events": [
+              {
+                "author": "consent_action_agent",
+                "content": {
+                  "parts": [
+                    {
+                      "function_call": {
+                        "id": "valid_revoke_consent_call_1",
+                        "args": {
+                          "mac_id": "7654321",
+                          "consent_type": "RR",
+                          "channel": "PB"
+                        },
+                        "name": "revoke_consent"
+                      }
+                    }
+                  ],
+                  "role": "model"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "session_input": {
+        "app_name": "consent_adk_demo",
+        "user_id": "eval_user"
+      }
+    },
+    {
+      "eval_id": "invalid_mac_id",
+      "conversation": [
+        {
+          "invocation_id": "invalid_mac_id_1",
+          "user_content": {
+            "parts": [
+              {
+                "text": "Create a consent with mac id 123, consent type MR, channel BB"
+              }
+            ],
+            "role": "user"
+          },
+          "final_response": {
+            "parts": [
+              {
+                "text": "Invalid request: mac_id must be exactly 7 numeric digits."
+              }
+            ],
+            "role": "model"
+          },
+          "intermediate_data": {
+            "invocation_events": []
+          }
+        }
+      ],
+      "session_input": {
+        "app_name": "consent_adk_demo",
+        "user_id": "eval_user"
+      }
+    },
+    {
+      "eval_id": "invalid_consent_type",
+      "conversation": [
+        {
+          "invocation_id": "invalid_consent_type_1",
+          "user_content": {
+            "parts": [
+              {
+                "text": "Create a consent with mac id 1234567, consent type XX, channel BB"
+              }
+            ],
+            "role": "user"
+          },
+          "final_response": {
+            "parts": [
+              {
+                "text": "Invalid request: consent_type must be one of MR, RR, or RP."
+              }
+            ],
+            "role": "model"
+          },
+          "intermediate_data": {
+            "invocation_events": []
+          }
+        }
+      ],
+      "session_input": {
+        "app_name": "consent_adk_demo",
+        "user_id": "eval_user"
+      }
+    },
+    {
+      "eval_id": "missing_channel",
+      "conversation": [
+        {
+          "invocation_id": "missing_channel_1",
+          "user_content": {
+            "parts": [
+              {
+                "text": "Create a consent with mac id 1234567 and consent type MR"
+              }
+            ],
+            "role": "user"
+          },
+          "final_response": {
+            "parts": [
+              {
+                "text": "Invalid request: channel is required and must be one of BB or PB."
+              }
+            ],
+            "role": "model"
+          },
+          "intermediate_data": {
+            "invocation_events": []
+          }
+        }
+      ],
+      "session_input": {
+        "app_name": "consent_adk_demo",
+        "user_id": "eval_user"
+      }
+    }
+  ],
+  "creation_timestamp": 0.0
+}
