@@ -75,10 +75,10 @@ pytest tests/unit -v
 
 ## Run Eval Tests
 
-Eval tests require a valid `DEEPSEEK_API_KEY` environment variable. They are skipped otherwise.
+Eval tests require a valid `DEEPSEEK_API_KEY` environment variable because they call the configured model.
 
 ```bash
-pytest tests/eval -v
+adk eval src/consent_adk_demo tests/eval/test_consent_agent_eval.evalset.json --config_file_path tests/eval/eval_config.json --print_detailed_results
 ```
 
 ## Log LLM Requests and Responses
@@ -136,5 +136,6 @@ consent-adk-demo/
     unit/
       test_consent_tools.py
     eval/
-      test_consent_agent_eval.py
+      eval_config.json
+      test_consent_agent_eval.evalset.json
 ```
